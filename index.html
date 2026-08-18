@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>কলকাতা নস্টালজিয়া</title>
+    <style>
+        body { margin: 0; padding: 0; background-color: #1a1a1a; color: white; text-align: center; font-family: sans-serif; }
+        .bg-container { 
+            position: fixed; top:0; left:0; width: 100%; height: 100%; 
+            background: url('https://i.imgur.com/your-image-link.jpg') no-repeat center center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .player-box { background: rgba(0,0,0,0.7); padding: 20px; border-radius: 10px; border: 2px solid #5a3d28; }
+        input { padding: 10px; width: 250px; margin-bottom: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="bg-container">
+        <div class="player-box">
+            <h1>কলকাতা নস্টালজিয়া</h1>
+            <input type="text" id="url" placeholder="ইউটিউব লিঙ্ক পেস্ট করুন">
+            <br>
+            <button onclick="play()">Play</button>
+            <br><br>
+            <div id="player"></div>
+        </div>
+    </div>
+    <script>
+        function play() {
+            let url = document.getElementById('url').value;
+            let id = url.split('v=')[1].split('&')[0];
+            document.getElementById('player').innerHTML = '<iframe width="400" height="225" src="https://www.youtube.com/embed/'+id+'?autoplay=1" allowfullscreen></iframe>';
+        }
+    </script>
+</body>
+</html>
