@@ -1,47 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>কলকাতা নস্টালজিয়া</title>
-    <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-  }
-  .bg-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('file_00000000862481fa992ad9f83149bdf2.png');
-    background-size: cover; /* ছবিটি পুরো এলাকা জুড়ে যাবে */
-    background-position: center center; /* ছবিটি সব সময় মাঝখানে থাকবে */
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-    </style>
-</head>
-<body>
-    <div class="bg-container">
-        <div class="player-box">
-            <h1>কলকাতা নস্টালজিয়া</h1>
-            <input type="text" id="url" placeholder="ইউটিউব লিঙ্ক পেস্ট করুন">
-            <br>
-            <button onclick="play()">Play</button>
-            <br><br>
-            <div id="player"></div>
-        </div>
+<div class="bg-container">
+  <div class="radio-box">
+    <!-- রেডিওর ওপরের অংশ: ডিসপ্লে এবং এফএম টিউনার -->
+    <div class="radio-top-section">
+      <div class="radio-screen">
+        <div class="song-title">O MERE DIL KE CHAIN</div>
+        <div class="song-sub">Kishore Kumar Hits</div>
+        <div class="song-sub">Evergreen Classic Collection</div>
+      </div>
+      <div class="radio-tuner">
+        <div class="tuner-scale">FM &nbsp; 88 &nbsp; 92 &nbsp;|&nbsp; 96 &nbsp; 100 &nbsp; 104 &nbsp; 108</div>
+        <div class="tuner-needle"></div>
+        <div class="tuner-info"><span>02:45</span> <span>FM</span> <span>04:30</span></div>
+      </div>
     </div>
-    <script>
-        function play() {
-            let url = document.getElementById('url').value;
-            let id = url.split('v=')[1].split('&')[0];
-            document.getElementById('player').innerHTML = '<iframe width="400" height="225" src="https://www.youtube.com/embed/'+id+'?autoplay=1" allowfullscreen></iframe>';
-        }
-    </script>
-</body>
-</html>
+
+    <!-- রেডিওর নিচের অংশ: প্লে বাটন, ছোট নব ও ভলিউম নব -->
+    <div class="radio-bottom-section">
+      <div class="control-buttons">
+        <button class="btn">&#9664;&#9664;</button>
+        <button class="btn">&#9658;</button>
+        <button class="btn">&#10074;&#10074;</button>
+        <button class="btn">&#9654;&#9654;</button>
+      </div>
+      
+      <div class="middle-controls">
+        <div class="small-knob"></div>
+        <span class="knob-label">SUNEE</span>
+        <div class="preset-buttons">
+          <button class="p-btn">অ</button>
+          <button class="p-btn">রি</button>
+          <button class="p-btn">মা</button>
+        </div>
+        <div class="indicator-light"></div>
+      </div>
+
+      <div class="volume-container">
+        <div class="vol-knob">
+          <div class="vol-line"></div>
+        </div>
+        <span class="knob-label">VOL</span>
+      </div>
+    </div>
+
+    <div class="radio-brand">
+      SOOR TAAL <span style="font-size: 10px; font-weight: normal;">| HITS OF KISHORE KUMAR</span>
+    </div>
+  </div>
+</div>
