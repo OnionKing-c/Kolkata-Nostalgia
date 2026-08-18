@@ -63,10 +63,10 @@
       margin-bottom: 10px;
     }
 
-    /* বাঁ দিকের ইউটিউব প্লেয়ার স্ক্রিন (থাম্বনেইল ও ভিডিও চালুর জায়গা) */
+    /* বাঁ দিকের ইউটিউব প্লেয়ার স্ক্রিন */
     .radio-screen {
       flex: 1.4;
-      background: #1c1815;
+      background: #000;
       border: 3px inset #5c3a21;
       border-radius: 6px;
       overflow: hidden;
@@ -74,10 +74,9 @@
       position: relative;
     }
 
-    .radio-screen iframe {
+    #player {
       width: 100%;
       height: 100%;
-      border: none;
     }
 
     /* ডান দিকের এফএম টিউনার স্কেল */
@@ -247,12 +246,14 @@
 
     <!-- কাঠের রেডিও প্লেয়ার বক্স -->
     <div class="radio-box">
-      <!-- রেডিওর ওপরের অংশ: বাঁ দিকে ইউটিউব প্লেলিস্ট (থাম্বনেইল সহ) এবং ডান দিকে এফএম টিউনার -->
+      <!-- রেডিওর ওপরের অংশ -->
       <div class="radio-top-section">
+        <!-- বাঁ দিকের ইউটিউব প্লেয়ার স্ক্রিন -->
         <div class="radio-screen">
-          <!-- আপনার দেওয়া ইউটিউব প্লেলিস্ট এমবেড কোড (অটোমেটিক গান ও থাম্বনেইল দেখানোর জন্য) -->
-          <iframe src="https://www.youtube.com/embed/videoseries?list=PLteSRTKLf30zAi6_iCozS5OJZRysd1Smv&autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <div id="player"></div>
         </div>
+        
+        <!-- ডান দিকের এফএম টিউনার স্কেল -->
         <div class="radio-tuner">
           <div class="tuner-scale">FM &nbsp; 88 &nbsp; 92 &nbsp; 96 &nbsp; 100 &nbsp; 104 &nbsp; 108</div>
           <div class="tuner-needle"></div>
@@ -260,13 +261,13 @@
         </div>
       </div>
 
-      <!-- রেডিওর নিচের অংশ: প্লে বাটন, ছোট নব ও ভলিউম নব -->
+      <!-- রেডিওর নিচের অংশ: কন্ট্রোল বাটন ও নব -->
       <div class="radio-bottom-section">
         <div class="control-buttons">
-          <button class="btn">&#9664;&#9664;</button>
-          <button class="btn">&#9658;</button>
-          <button class="btn">&#10074;&#10074;</button>
-          <button class="btn">&#9654;&#9654;</button>
+          <button class="btn" onclick="player.playVideo()">&#9658;</button>
+          <button class="btn" onclick="player.pauseVideo()">&#10074;&#10074;</button>
+          <button class="btn" onclick="player.setVolume(player.getVolume() + 15)">Vol+</button>
+          <button class="btn" onclick="player.setVolume(player.getVolume() - 15)">Vol-</button>
         </div>
         
         <div class="middle-controls">
@@ -290,7 +291,7 @@
 
       <div class="radio-footer">
         <div class="radio-brand">সুর তাল</div>
-        <div class="radio-sub-brand">সুর তাল / কিশোর কুমারের সেরা গান</div>
+        <div class="radio-sub-brand">সুর তাল / ক্লাসিক্যাল নস্টালজিয়া</div>
       </div>
     </div>
 
@@ -298,5 +299,24 @@
     <div class="footer-tagline">সুর কখনও পুরোনো হয় না...</div>
   </div>
 
+  <!-- ইউটিউব আইফ্রেম এপিআই স্ক্রিপ্ট এবং আপনার দেওয়া গান (LXuqmhUlg6Q) -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '160',
+        width: '100%',
+        videoId: 'LXuqmhUlg6Q',
+        playerVars: {
+          'autoplay': 1,
+          'controls': 0,
+          'modestbranding': 1,
+          'rel': 0
+        }
+      });
+    }
+  </script>
+
 </body>
-  </html>
+</html>
