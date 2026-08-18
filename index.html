@@ -6,25 +6,24 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: #falaia;
-    color: white;
-    text-align: center;
     font-family: sans-serif;
   }
   .bg-container {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('file_00000000862481fa992ad9f83149bdf2.png') no-repeat center center/cover;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('file_00000000862481fa992ad9f83149bdf2.png');
+    background-size: cover; /* ছবিটি পুরো এলাকা জুড়ে যাবে */
+    background-position: center center; /* ছবিটি সব সময় মাঝখানে থাকবে */
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  /* আপনার বাকি কোডগুলো এখানে থাকবে */
-      </style>
+    </style>
 </head>
 <body>
     <div class="bg-container">
