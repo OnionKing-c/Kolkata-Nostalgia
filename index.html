@@ -12,7 +12,7 @@
       overflow: hidden;
     }
 
-    /* পুরো ব্যাকগ্রাউন্ড ইমেজ সেটআপ */
+    /* পুরো ব্যাকগ্রাউন্ড ইমেজ */
     .bg-container {
       position: fixed;
       top: 0;
@@ -30,12 +30,12 @@
       position: relative;
     }
 
-    /* ওপরের বড় টাইটেল: পুরোনো নগমে */
+    /* ওপরের বড় টাইটেল */
     .main-title {
       position: absolute;
-      top: 8%;
+      top: 6%;
       text-align: center;
-      color: #7b1113; /* ছবির লেখার রঙের সাথে সামঞ্জস্য রেখে গাঢ় লাল/মেরুন */
+      color: #7b1113;
       font-size: 5vw;
       font-weight: bold;
       text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4), 
@@ -44,9 +44,9 @@
       line-height: 1.2;
     }
 
-    /* কাঠের রেডিওর মূল কাঠামো (ছবির পজিশন অনুযায়ী মাপে তৈরি) */
+    /* কাঠের রেডিওর মূল কাঠামো */
     .radio-box {
-      width: 520px;
+      width: 540px;
       background: linear-gradient(135deg, #b88654, #8b5a2b);
       border: 5px solid #4a2c11;
       border-radius: 12px;
@@ -54,7 +54,7 @@
       box-shadow: 0 15px 35px rgba(0,0,0,0.8);
       color: #333;
       position: absolute;
-      bottom: 12%; /* ছবির মতো নিচের দিকে নির্দিষ্ট স্থানে বসানো */
+      bottom: 8%;
     }
 
     .radio-top-section {
@@ -63,41 +63,21 @@
       margin-bottom: 10px;
     }
 
-    /* বাঁ দিকের মিউজিক ডিসপ্লে স্ক্রিন */
+    /* বাঁ দিকের ইউটিউব প্লেয়ার স্ক্রিন (থাম্বনেইল ও ভিডিও চালুর জায়গা) */
     .radio-screen {
-      flex: 1.3;
+      flex: 1.4;
       background: #1c1815;
       border: 3px inset #5c3a21;
       border-radius: 6px;
-      padding: 10px;
-      color: #f0e6d2;
-      display: flex;
-      gap: 10px;
-      align-items: center;
+      overflow: hidden;
+      height: 160px;
+      position: relative;
     }
-    .album-art {
-      width: 80px;
-      height: 80px;
-      background: #333;
-      border-radius: 4px;
-      object-fit: cover;
-      border: 1px solid #555;
-    }
-    .song-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .song-title {
-      font-size: 15px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-      color: #fff;
-    }
-    .song-sub {
-      font-size: 10px;
-      color: #b5a48b;
+
+    .radio-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     /* ডান দিকের এফএম টিউনার স্কেল */
@@ -112,6 +92,8 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      height: 160px;
+      box-sizing: border-box;
     }
     .tuner-scale {
       font-size: 9px;
@@ -123,8 +105,8 @@
       height: 20px;
       background: #ff4d4d;
       position: absolute;
-      top: 16px;
-      left: 40px;
+      top: 25px;
+      left: 50px;
     }
     .tuner-info {
       display: flex;
@@ -245,11 +227,11 @@
       font-weight: normal;
     }
 
-    /* একদম নিচের ছোট ট্যাগলাইন */
+    /* একদম নিচের ট্যাগলাইন */
     .footer-tagline {
       position: absolute;
-      bottom: 3%;
-      font-size: 14px;
+      bottom: 2%;
+      font-size: 13px;
       color: #d8b08c;
       letter-spacing: 1px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
@@ -265,15 +247,11 @@
 
     <!-- কাঠের রেডিও প্লেয়ার বক্স -->
     <div class="radio-box">
-      <!-- রেডিওর ওপরের অংশ: ডিসপ্লে এবং এফএম টিউনার -->
+      <!-- রেডিওর ওপরের অংশ: বাঁ দিকে ইউটিউব প্লেলিস্ট (থাম্বনেইল সহ) এবং ডান দিকে এফএম টিউনার -->
       <div class="radio-top-section">
         <div class="radio-screen">
-          <!-- গানের ভেতরের ছবি চাইলে এখানে যোগ করতে পারেন, আপাতত খালি রাখা হয়েছে -->
-          <div class="song-info">
-            <div class="song-title">ও আমার দিল কে চেইন</div>
-            <div class="song-sub">কিশোর কুমার হিটস</div>
-            <div class="song-sub">এভারগ্রিন ক্লাসিক কালেকশন</div>
-          </div>
+          <!-- আপনার দেওয়া ইউটিউব প্লেলিস্ট এমবেড কোড (অটোমেটিক গান ও থাম্বনেইল দেখানোর জন্য) -->
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PLteSRTKLf30zAi6_iCozS5OJZRysd1Smv&autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <div class="radio-tuner">
           <div class="tuner-scale">FM &nbsp; 88 &nbsp; 92 &nbsp; 96 &nbsp; 100 &nbsp; 104 &nbsp; 108</div>
@@ -293,7 +271,7 @@
         
         <div class="middle-controls">
           <div class="small-knob"></div>
-          <span class="knob-label" style="font-size:6px;">SUNEE</span>
+          <span class="knob-label" style="font-size:6px;">সূর</span>
           <div class="preset-buttons">
             <button class="p-btn">অ</button>
             <button class="p-btn">রি</button>
@@ -306,7 +284,7 @@
           <div class="vol-knob">
             <div class="vol-line"></div>
           </div>
-          <span class="knob-label">VOL</span>
+          <span class="knob-label">ভলিউম</span>
         </div>
       </div>
 
@@ -321,4 +299,4 @@
   </div>
 
 </body>
-</html>
+              </html>
