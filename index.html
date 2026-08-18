@@ -46,7 +46,7 @@
 
     /* কাঠের রেডিওর মূল কাঠামো */
     .radio-box {
-      width: 540px;
+      width: 580px;
       background: linear-gradient(135deg, #b88654, #8b5a2b);
       border: 5px solid #4a2c11;
       border-radius: 12px;
@@ -79,7 +79,7 @@
       height: 100%;
     }
 
-    /* ডান দিকের এফএম টিউনার স্কেল (একিভ করার জন্য আপডেট করা হয়েছে) */
+    /* ডান দিকের এফএম টিউনার স্কেল */
     .radio-tuner {
       flex: 1;
       background: #1c1815;
@@ -120,18 +120,20 @@
     /* রেডিওর নিচের কন্ট্রোল সেকশন */
     .radio-bottom-section {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 6px;
       background: #d8b08c;
       border: 2px solid #9c6b3f;
       border-radius: 6px;
-      padding: 6px 8px;
+      padding: 8px;
     }
 
-    .control-buttons {
+    .control-row {
       display: flex;
-      gap: 4px;
+      justify-content: space-between;
+      gap: 5px;
     }
+
     .btn {
       background: #e6ccb2;
       border: 1px solid #704214;
@@ -140,68 +142,14 @@
       cursor: pointer;
       font-size: 11px;
       font-weight: bold;
+      color: #111; /* ব্ল্যাক কালার মেইনটেইন করার জন্য */
       box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+      flex: 1;
       transition: 0.2s;
     }
     .btn:active {
       background: #cdb49d;
       transform: scale(0.95);
-    }
-
-    .middle-controls {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .small-knob {
-      width: 22px;
-      height: 22px;
-      background: radial-gradient(circle, #f4f4f4 30%, #b0b0b0 80%);
-      border-radius: 50%;
-      border: 1px solid #444;
-    }
-    .preset-buttons {
-      display: flex;
-      gap: 2px;
-    }
-    .p-btn {
-      background: #e6ccb2;
-      border: 1px solid #704214;
-      border-radius: 3px;
-      width: 18px;
-      height: 20px;
-      font-size: 9px;
-      cursor: pointer;
-    }
-    .indicator-light {
-      width: 6px;
-      height: 14px;
-      background: #00ff66;
-      border-radius: 3px;
-      box-shadow: 0 0 8px #00ff66;
-      margin-left: 2px;
-    }
-
-    /* ভলিউম নব */
-    .volume-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .vol-knob {
-      width: 26px;
-      height: 26px;
-      background: radial-gradient(circle, #f4f4f4 30%, #b0b0b0 80%);
-      border-radius: 50%;
-      border: 2px solid #444;
-      position: relative;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    .knob-label {
-      font-size: 7px;
-      font-weight: bold;
-      color: #4a2c11;
-      margin-top: 1px;
     }
 
     .radio-footer {
@@ -251,7 +199,7 @@
           <div id="player"></div>
         </div>
         
-        <!-- ডান দিকের এফএম টিউনার স্কেল (লাইভ স্ট্যাটাস সহ) -->
+        <!-- ডান দিকের এফএম টিউনার স্কেল -->
         <div class="radio-tuner">
           <div class="tuner-scale">FM &nbsp; 88 &nbsp; 92 &nbsp; 96 &nbsp; 100 &nbsp; 104 &nbsp; 108</div>
           <div class="tuner-needle" id="tunerNeedle"></div>
@@ -263,29 +211,19 @@
         </div>
       </div>
 
-      <!-- রেডিওর নিচের অংশ: কন্ট্রোল বাটন ও নব -->
+      <!-- রেডিওর নিচের অংশ: ফুল কন্ট্রোল প্যানেল -->
       <div class="radio-bottom-section">
-        <div class="control-buttons">
+        <div class="control-row">
+          <button class="btn" onclick="prevTrack()">⏮ PREV</button>
+          <button class="btn" onclick="seek(-10)">⏪ -10s</button>
+          <button class="btn" onclick="seek(10)">+10s ⏩</button>
+          <button class="btn" onclick="nextTrack()">NEXT ⏭</button>
+        </div>
+        <div class="control-row">
           <button class="btn" onclick="playVideo()">▶ PLAY</button>
           <button class="btn" onclick="pauseVideo()">⏸ PAUSE</button>
-          <button class="btn" onclick="changeVolume(15)">Vol+</button>
-          <button class="btn" onclick="changeVolume(-15)">Vol-</button>
-        </div>
-        
-        <div class="middle-controls">
-          <div class="small-knob"></div>
-          <span class="knob-label" style="font-size:6px;">সূর</span>
-          <div class="preset-buttons">
-            <button class="p-btn">অ</button>
-            <button class="p-btn">রি</button>
-            <button class="p-btn">মা</button>
-          </div>
-          <div class="indicator-light"></div>
-        </div>
-
-        <div class="volume-container">
-          <div class="vol-knob"></div>
-          <span class="knob-label">ভলিউম</span>
+          <button class="btn" onclick="changeVolume(15)">VOL +</button>
+          <button class="btn" onclick="changeVolume(-15)">VOL -</button>
         </div>
       </div>
 
@@ -303,13 +241,14 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     var player;
-    var videoId = 'LXuqmhUlg6Q'; // আপনার দেওয়া ভিডিও আইডি
+    var playlist = ['LXuqmhUlg6Q', 'dQw4w9WgXcQ', 'jNQXAC9IVRw']; // আপনার পছন্দের গানগুলো এখানে যুক্ত করতে পারেন
+    var currentIndex = 0;
 
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('player', {
         height: '160',
         width: '100%',
-        videoId: videoId,
+        videoId: playlist[currentIndex],
         playerVars: {
           'autoplay': 1,
           'controls': 0,
@@ -343,21 +282,40 @@
       }
     }
 
+    function seek(seconds) {
+      if (player && player.getCurrentTime) {
+        var time = player.getCurrentTime();
+        player.seekTo(time + seconds);
+      }
+    }
+
+    function nextTrack() {
+      currentIndex = (currentIndex + 1) % playlist.length;
+      if (player && player.loadVideoById) {
+        player.loadVideoById(playlist[currentIndex]);
+      }
+    }
+
+    function prevTrack() {
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      if (player && player.loadVideoById) {
+        player.loadVideoById(playlist[currentIndex]);
+      }
+    }
+
     // এফএম টিউনারের কাটা এবং টাইম আপডেট করার ফাংশন
     function updateRadioMeter() {
       if (player && player.getCurrentTime && player.getDuration) {
         var current = player.getCurrentTime();
         var duration = player.getDuration();
         
-        // সময় ফরম্যাট করা
         document.getElementById('currentTime').innerText = formatTime(current);
         document.getElementById('totalTime').innerText = formatTime(duration);
 
-        // ভিডিওর প্রোগ্রেস অনুযায়ী এফএম টিউনারের কাটা নড়াচড়া করবে
         if (duration > 0) {
           var percentage = current / duration;
-          var minLeft = 20; // কাটার শুরু পজিশন
-          var maxLeft = 180; // কাটার শেষ পজিশন
+          var minLeft = 20; 
+          var maxLeft = 180; 
           var newPos = minLeft + (percentage * (maxLeft - minLeft));
           document.getElementById('tunerNeedle').style.left = newPos + 'px';
         }
@@ -372,4 +330,4 @@
   </script>
 
 </body>
-            </html>
+</html>
