@@ -1,49 +1,255 @@
-<div class="bg-container">
-  <div class="radio-box">
-    <!-- রেডিওর ওপরের অংশ: ডিসপ্লে এবং এফএম টিউনার -->
-    <div class="radio-top-section">
-      <div class="radio-screen">
-        <div class="song-title">O MERE DIL KE CHAIN</div>
-        <div class="song-sub">Kishore Kumar Hits</div>
-        <div class="song-sub">Evergreen Classic Collection</div>
-      </div>
-      <div class="radio-tuner">
-        <div class="tuner-scale">FM &nbsp; 88 &nbsp; 92 &nbsp;|&nbsp; 96 &nbsp; 100 &nbsp; 104 &nbsp; 108</div>
-        <div class="tuner-needle"></div>
-        <div class="tuner-info"><span>02:45</span> <span>FM</span> <span>04:30</span></div>
-      </div>
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Kolkata Nostalgia - Music Player</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #111;
+    }
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('file_00000000862481fa992ad9f83149bdf2.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-    <!-- রেডিওর নিচের অংশ: প্লে বাটন, ছোট নব ও ভলিউম নব -->
-    <div class="radio-bottom-section">
-      <div class="control-buttons">
-        <button class="btn">&#9664;&#9664;</button>
-        <button class="btn">&#9658;</button>
-        <button class="btn">&#10074;&#10074;</button>
-        <button class="btn">&#9654;&#9654;</button>
-      </div>
-      
-      <div class="middle-controls">
-        <div class="small-knob"></div>
-        <span class="knob-label">SUNEE</span>
-        <div class="preset-buttons">
-          <button class="p-btn">অ</button>
-          <button class="p-btn">রি</button>
-          <button class="p-btn">মা</button>
+    /* কাঠের রেডিওর মূল কাঠামো */
+    .radio-box {
+      width: 540px;
+      background: linear-gradient(135deg, #b88654, #8b5a2b);
+      border: 6px solid #4a2c11;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      color: #333;
+    }
+
+    .radio-top-section {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* বাঁ দিকের মিউজিক ডিসপ্লে স্ক্রিন */
+    .radio-screen {
+      flex: 1.2;
+      background: #1c1815;
+      border: 3px inset #5c3a21;
+      border-radius: 6px;
+      padding: 12px;
+      color: #f0e6d2;
+    }
+    .song-title {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .song-sub {
+      font-size: 11px;
+      color: #b5a48b;
+    }
+
+    /* ডান দিকের এফএম টিউনার স্কেল */
+    .radio-tuner {
+      flex: 1;
+      background: #1c1815;
+      border: 3px inset #5c3a21;
+      border-radius: 6px;
+      padding: 8px 10px;
+      color: #f0e6d2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .tuner-scale {
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+    }
+    .tuner-needle {
+      width: 2px;
+      height: 22px;
+      background: #ff4d4d;
+      position: absolute;
+      top: 18px;
+      left: 45px;
+    }
+    .tuner-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #888;
+    }
+
+    /* রেডিওর নিচের কন্ট্রোল সেকশন */
+    .radio-bottom-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #d8b08c;
+      border: 2px solid #9c6b3f;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .control-buttons {
+      display: flex;
+      gap: 4px;
+    }
+    .btn {
+      background: #e6ccb2;
+      border: 1px solid #704214;
+      border-radius: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+    }
+    .btn:active {
+      background: #cdb49dbb;
+    }
+
+    .middle-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .small-knob {
+      width: 24px;
+      height: 24px;
+      background: radial-gradient(circle, #f4f4f4 30%, #b0b0b0 80%);
+      border-radius: 50%;
+      border: 1px solid #444;
+    }
+    .preset-buttons {
+      display: flex;
+      gap: 3px;
+    }
+    .p-btn {
+      background: #e6ccb2;
+      border: 1px solid #704214;
+      border-radius: 3px;
+      width: 20px;
+      height: 22px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+    .indicator-light {
+      width: 6px;
+      height: 14px;
+      background: #00ff66;
+      border-radius: 3px;
+      box-shadow: 0 0 6px #00ff66;
+      margin-left: 2px;
+    }
+
+    /* ভলিউম নব */
+    .volume-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .vol-knob {
+      width: 32px;
+      height: 32px;
+      background: radial-gradient(circle, #f4f4f4 30%, #b0b0b0 80%);
+      border-radius: 50%;
+      border: 2px solid #444;
+      position: relative;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    }
+    .vol-line {
+      width: 2px;
+      height: 12px;
+      background: #000;
+      position: absolute;
+      top: 2px;
+      left: 13px;
+    }
+    .knob-label {
+      font-size: 8px;
+      font-weight: bold;
+      color: #4a2c11;
+      margin-top: 2px;
+    }
+
+    .radio-brand {
+      font-size: 12px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1.5px;
+      margin-top: 8px;
+      text-align: left;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-container">
+    <div class="radio-box">
+      <!-- রেডিওর ওপরের অংশ: ডিসপ্লে এবং এফএম টিউনার -->
+      <div class="radio-top-section">
+        <div class="radio-screen">
+          <div class="song-title">O MERE DIL KE CHAIN</div>
+          <div class="song-sub">Kishore Kumar Hits</div>
+          <div class="song-sub">Evergreen Classic Collection</div>
         </div>
-        <div class="indicator-light"></div>
-      </div>
-
-      <div class="volume-container">
-        <div class="vol-knob">
-          <div class="vol-line"></div>
+        <div class="radio-tuner">
+          <div class="tuner-scale">FM &nbsp; 88 &nbsp; 92 &nbsp;|&nbsp; 96 &nbsp; 100 &nbsp; 104 &nbsp; 108</div>
+          <div class="tuner-needle"></div>
+          <div class="tuner-info"><span>02:45</span> <span>FM</span> <span>04:30</span></div>
         </div>
-        <span class="knob-label">VOL</span>
       </div>
-    </div>
 
-    <div class="radio-brand">
-      SOOR TAAL <span style="font-size: 10px; font-weight: normal;">| HITS OF KISHORE KUMAR</span>
+      <!-- রেডিওর নিচের অংশ: প্লে বাটন, ছোট নব ও ভলিউম নব -->
+      <div class="radio-bottom-section">
+        <div class="control-buttons">
+          <button class="btn">&#9664;&#9664;</button>
+          <button class="btn">&#9658;</button>
+          <button class="btn">&#10074;&#10074;</button>
+          <button class="btn">&#9654;&#9654;</button>
+        </div>
+        
+        <div class="middle-controls">
+          <div class="small-knob"></div>
+          <span class="knob-label">SUNEE</span>
+          <div class="preset-buttons">
+            <button class="p-btn">অ</button>
+            <button class="p-btn">রি</button>
+            <button class="p-btn">মা</button>
+          </div>
+          <div class="indicator-light"></div>
+        </div>
+
+        <div class="volume-container">
+          <div class="vol-knob">
+            <div class="vol-line"></div>
+          </div>
+          <span class="knob-label">VOL</span>
+        </div>
+      </div>
+
+      <div class="radio-brand">
+        SOOR TAAL <span style="font-size: 10px; font-weight: normal;">| HITS OF KISHORE KUMAR</span>
+      </div>
     </div>
   </div>
-</div>
+
+</body>
+  </html>
