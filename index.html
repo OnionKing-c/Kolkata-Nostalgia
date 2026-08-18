@@ -2,99 +2,301 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Nostalgia Radio</title>
+  <title>পুরোনো নগমে - Kolkata Nostalgia</title>
   <style>
-    body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background-color: #111; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
-    
-    /* Radio Main Structure */
-    .radio-box {
-      width: 580px;
-      background: linear-gradient(135deg, #b88654, #8b5a2b);
-      border: 8px solid #4a2c11;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #111;
+      overflow: hidden;
     }
 
-    /* Radio Screen */
-    #player {
-      width: 100%;
-      height: 280px;
-      background: #000;
-      border: 4px inset #5c3a21;
-      border-radius: 8px;
-    }
-
-    /* Control Panel */
-    .controls {
+    /* পুরো ব্যাকগ্রাউন্ড ইমেজ */
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('file_00000000862481fa992ad9f83149bdf2.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      margin-top: 15px;
-      background: #d8b08c;
-      padding: 10px;
-      border: 2px solid #9c6b3f;
-      border-radius: 8px;
+      position: relative;
     }
-    
-    .btn {
-      padding: 8px 16px;
-      cursor: pointer;
-      border: 2px solid #704214;
-      background: #e6ccb2;
+
+    /* ওপরের বড় টাইটেল */
+    .main-title {
+      position: absolute;
+      top: 6%;
+      text-align: center;
+      color: #7b1113;
+      font-size: 5vw;
       font-weight: bold;
-      border-radius: 4px;
-      transition: 0.3s;
-      font-size: 14px;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4), 
+                   0 0 20px rgba(0, 0, 0, 0.6);
+      letter-spacing: 2px;
+      line-height: 1.2;
     }
-    .btn:hover { background: #cdb49d; }
-    
-    .status-text { font-size: 14px; font-weight: bold; color: #4a2c11; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* কাঠের রেডিওর মূল কাঠামো */
+    .radio-box {
+      width: 540px;
+      background: linear-gradient(135deg, #b88654, #8b5a2b);
+      border: 5px solid #4a2c11;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+      color: #333;
+      position: absolute;
+      bottom: 8%;
+    }
+
+    .radio-top-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* বাঁ দিকের ইউটিউব প্লেয়ার স্ক্রিন (থাম্বনেইল ও ভিডিও চালুর জায়গা) */
+    .radio-screen {
+      flex: 1.4;
+      background: #1c1815;
+      border: 3px inset #5c3a21;
+      border-radius: 6px;
+      overflow: hidden;
+      height: 160px;
+      position: relative;
+    }
+
+    .radio-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ডান দিকের এফএম টিউনার স্কেল */
+    .radio-tuner {
+      flex: 1;
+      background: #1c1815;
+      border: 3px inset #5c3a21;
+      border-radius: 6px;
+      padding: 8px;
+      color: #f0e6d2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      height: 160px;
+      box-sizing: border-box;
+    }
+    .tuner-scale {
+      font-size: 9px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+    }
+    .tuner-needle {
+      width: 2px;
+      height: 20px;
+      background: #ff4d4d;
+      position: absolute;
+      top: 25px;
+      left: 50px;
+    }
+    .tuner-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #888;
+    }
+
+    /* রেডিওর নিচের কন্ট্রোল সেকশন */
+    .radio-bottom-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #d8b08c;
+      border: 2px solid #9c6b3f;
+      border-radius: 6px;
+      padding: 6px 8px;
+    }
+
+    .control-buttons {
+      display: flex;
+      gap: 3px;
+    }
+    .btn {
+      background: #e6ccb2;
+      border: 1px solid #704214;
+      border-radius: 4px;
+      padding: 5px 8px;
+      cursor: pointer;
+      font-size: 11px;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+    }
+    .btn:active {
+      background: #cdb49d;
+    }
+
+    .middle-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .small-knob {
+      width: 22px;
+      height: 22px;
+      background: radial-gradient(circle, #f4f4f4 30%, #b0b0b0 80%);
+      border-radius: 50%;
+      border: 1px solid #444;
+    }
+    .preset-buttons {
+      display: flex;
+      gap: 2px;
+    }
+    .p-btn {
+      background: #e6ccb2;
+      border: 1px solid #704214;
+      border-radius: 3px;
+      width: 18px;
+      height: 20px;
+      font-size: 9px;
+      cursor: pointer;
+    }
+    .indicator-light {
+      width: 5px;
+      height: 12px;
+      background: #00ff66;
+      border-radius: 3px;
+      box-shadow: 0 0 5px #00ff66;
+      margin-left: 2px;
+    }
+
+    /* ভলিউম নব */
+    .volume-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .vol-knob {
+      width: 28px;
+      height: 28px;
+      background: radial-gradient(circle, #f4f4f4 30%, #b0b0b0 80%);
+      border-radius: 50%;
+      border: 2px solid #444;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .vol-line {
+      width: 2px;
+      height: 10px;
+      background: #000;
+      position: absolute;
+      top: 2px;
+      left: 11px;
+    }
+    .knob-label {
+      font-size: 7px;
+      font-weight: bold;
+      color: #4a2c11;
+      margin-top: 1px;
+    }
+
+    .radio-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      padding: 0 2px;
+    }
+    .radio-brand {
+      font-size: 11px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    .radio-sub-brand {
+      font-size: 9px;
+      color: #f0e6d2;
+      font-weight: normal;
+    }
+
+    /* একদম নিচের ট্যাগলাইন */
+    .footer-tagline {
+      position: absolute;
+      bottom: 2%;
+      font-size: 13px;
+      color: #d8b08c;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
 
-<div class="radio-box">
-  <!-- YouTube Video Screen -->
-  <div id="player"></div>
+  <div class="bg-container">
+    <!-- ওপরের বড় টাইটেল -->
+    <div class="main-title">পুরোনো<br>নগমে</div>
 
-  <!-- Radio Controls -->
-  <div class="controls">
-    <button class="btn" onclick="stopVideo()">STOP</button>
-    <div class="status-text">NOSTALGIA RADIO</div>
-    <button class="btn" onclick="playVideo()">PLAY</button>
+    <!-- কাঠের রেডিও প্লেয়ার বক্স -->
+    <div class="radio-box">
+      <!-- রেডিওর ওপরের অংশ: বাঁ দিকে ইউটিউব প্লেলিস্ট (থাম্বনেইল সহ) এবং ডান দিকে এফএম টিউনার -->
+      <div class="radio-top-section">
+        <div class="radio-screen">
+          <!-- আপনার দেওয়া ইউটিউব প্লেলিস্ট এমবেড কোড (অটোমেটিক গান ও থাম্বনেইল দেখানোর জন্য) -->
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PLteSRTKLf30zAi6_iCozS5OJZRysd1Smv&autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div class="radio-tuner">
+          <div class="tuner-scale">FM &nbsp; 88 &nbsp; 92 &nbsp; 96 &nbsp; 100 &nbsp; 104 &nbsp; 108</div>
+          <div class="tuner-needle"></div>
+          <div class="tuner-info"><span>02:45</span> <span>FM</span> <span>04:30</span></div>
+        </div>
+      </div>
+
+      <!-- রেডিওর নিচের অংশ: প্লে বাটন, ছোট নব ও ভলিউম নব -->
+      <div class="radio-bottom-section">
+        <div class="control-buttons">
+          <button class="btn">&#9664;&#9664;</button>
+          <button class="btn">&#9658;</button>
+          <button class="btn">&#10074;&#10074;</button>
+          <button class="btn">&#9654;&#9654;</button>
+        </div>
+        
+        <div class="middle-controls">
+          <div class="small-knob"></div>
+          <span class="knob-label" style="font-size:6px;">সূর</span>
+          <div class="preset-buttons">
+            <button class="p-btn">অ</button>
+            <button class="p-btn">রি</button>
+            <button class="p-btn">মা</button>
+          </div>
+          <div class="indicator-light"></div>
+        </div>
+
+        <div class="volume-container">
+          <div class="vol-knob">
+            <div class="vol-line"></div>
+          </div>
+          <span class="knob-label">ভলিউম</span>
+        </div>
+      </div>
+
+      <div class="radio-footer">
+        <div class="radio-brand">সুর তাল</div>
+        <div class="radio-sub-brand">সুর তাল / কিশোর কুমারের সেরা গান</div>
+      </div>
+    </div>
+
+    <!-- একদম নিচের ট্যাগলাইন -->
+    <div class="footer-tagline">সুর কখনও পুরোনো হয় না...</div>
   </div>
-</div>
-
-<!-- YouTube IFrame API Script -->
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-  var player;
-  // Your Playlist ID
-  var playlistId = 'PLtgWTUdMPxCNhfFOxCw_8_K9aCU4vRVHo';
-
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '280',
-      width: '100%',
-      playerVars: {
-        'listType': 'playlist',
-        'list': playlistId,
-        'autoplay': 1,
-        'controls': 1,
-        'modestbranding': 1
-      }
-    });
-  }
-
-  function stopVideo() {
-    player.stopVideo();
-  }
-
-  function playVideo() {
-    player.playVideo();
-  }
-</script>
 
 </body>
-</html>
+  </html>
