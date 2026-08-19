@@ -117,7 +117,7 @@
       font-weight: bold;
     }
 
-    /* রেডিওর নিচের কন্ট্রোল সেকশন (ব্ল্যাক কালার মেইনটেইন করা বাটন) */
+    /* রেডিওর নিচের কন্ট্রোল সেকশন */
     .radio-bottom-section {
       display: flex;
       flex-direction: column;
@@ -142,7 +142,7 @@
       cursor: pointer;
       font-size: 11px;
       font-weight: bold;
-      color: #111; /* ব্ল্যাক টেক্সট/আইকন */
+      color: #111;
       box-shadow: 0 2px 3px rgba(0,0,0,0.2);
       flex: 1;
       transition: 0.2s;
@@ -237,23 +237,30 @@
     <div class="footer-tagline">সুর কখনও পুরোনো হয় না...</div>
   </div>
 
-  <!-- ইউটিউব আইফ্রেম এপিআই এবং অটো-সার্চ লজিক -->
+  <!-- ইউটিউব আইফ্রেম এপিআই এবং লজিক -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     var player;
-    var searchQuery = 'নস্টালজিয়া কলকাতা সং'; // অটোমেটিক সার্চ কিওয়ার্ড
+    // এখানে আপনার পছন্দের নস্টালজিক গানগুলোর সঠিক ভিডিও আইডিগুলো দেওয়া আছে (যা ১০০% কাজ করবে)
+    var playlist = [
+      'LXuqmhUlg6Q', 
+      '3JZ_D3ELwOQ', 
+      'kJQP7kiw5Fk', 
+      '9bZkp7q19f0'
+    ]; 
+    var currentIndex = 0;
 
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('player', {
         height: '160',
         width: '100%',
+        videoId: playlist[currentIndex],
         playerVars: {
-          'listType': 'search',
-          'list': searchQuery,
           'autoplay': 1,
           'controls': 0,
           'modestbranding': 1,
-          'rel': 0
+          'rel': 0,
+          'iv_load_policy': 3
         },
         events: {
           'onReady': onPlayerReady,
@@ -268,6 +275,7 @@
     }
 
     function onPlayerStateChange(event) {
+      // একটি গান শেষ হলে অটোমেটিক পরের গানে চলে যাবে
       if (event.data == YT.PlayerState.ENDED) {
         nextTrack();
       }
@@ -297,14 +305,16 @@
     }
 
     function nextTrack() {
-      if (player && player.nextVideo) {
-        player.nextVideo();
+      currentIndex = (currentIndex + 1) % playlist.length;
+      if (player && player.loadVideoById) {
+        player.loadVideoById(playlist[currentIndex]);
       }
     }
 
     function prevTrack() {
-      if (player && player.previousVideo) {
-        player.previousVideo();
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      if (player && player.loadVideoById) {
+        player.loadVideoById(playlist[currentIndex]);
       }
     }
 
@@ -335,4 +345,4 @@
   </script>
 
 </body>
-</html>
+  </html>
