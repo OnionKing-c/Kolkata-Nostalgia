@@ -4,92 +4,202 @@
   <meta charset="UTF-8">
   <title>পুরোনো নগমে - Kolkata Nostalgia</title>
   <style>
-    body { margin: 0; padding: 0; font-family: sans-serif; background-color: #111; overflow: hidden; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #111;
+      overflow: hidden;
+    }
 
     /* পুরো ব্যাকগ্রাউন্ড ইমেজ */
     .bg-container {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-image: url('file_00000000862481fa992ad9f83149bdf2.png');
-      background-size: cover; background-position: center center;
-      background-repeat: no-repeat; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; position: relative;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
 
     /* ওপরের বড় টাইটেল */
     .main-title {
-      position: absolute; top: 6%; text-align: center; color: #7b1113;
-      font-size: 5vw; font-weight: bold; text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4), 0 0 20px rgba(0, 0, 0, 0.6);
-      letter-spacing: 2px; line-height: 1.2;
+      position: absolute;
+      top: 6%;
+      text-align: center;
+      color: #7b1113;
+      font-size: 5vw;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4), 
+                   0 0 20px rgba(0, 0, 0, 0.6);
+      letter-spacing: 2px;
+      line-height: 1.2;
     }
 
     /* কাঠের রেডিওর মূল কাঠামো */
     .radio-box {
-      width: 580px; background: linear-gradient(135deg, #b88654, #8b5a2b);
-      border: 5px solid #4a2c11; border-radius: 12px; padding: 12px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.8); color: #333;
-      position: absolute; bottom: 8%;
+      width: 580px;
+      background: linear-gradient(135deg, #b88654, #8b5a2b);
+      border: 5px solid #4a2c11;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+      color: #333;
+      position: absolute;
+      bottom: 8%;
     }
 
-    .radio-top-section { display: flex; gap: 10px; margin-bottom: 10px; }
+    .radio-top-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
 
     /* বাঁ দিকের ইউটিউব প্লেয়ার স্ক্রিন */
     .radio-screen {
-      flex: 1.4; background: #000; border: 3px inset #5c3a21;
-      border-radius: 6px; overflow: hidden; height: 160px; position: relative;
+      flex: 1.4;
+      background: #000;
+      border: 3px inset #5c3a21;
+      border-radius: 6px;
+      overflow: hidden;
+      height: 160px;
+      position: relative;
     }
 
-    #player { width: 100%; height: 100%; }
+    #player {
+      width: 100%;
+      height: 100%;
+    }
 
     /* ডান দিকের এফএম টিউনার স্কেল */
     .radio-tuner {
-      flex: 1; background: #1c1815; border: 3px inset #5c3a21;
-      border-radius: 6px; padding: 8px; color: #f0e6d2;
-      display: flex; flex-direction: column; justify-content: space-between;
-      position: relative; height: 160px; box-sizing: border-box;
+      flex: 1;
+      background: #1c1815;
+      border: 3px inset #5c3a21;
+      border-radius: 6px;
+      padding: 8px;
+      color: #f0e6d2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      height: 160px;
+      box-sizing: border-box;
     }
-    .tuner-scale { font-size: 9px; color: #aaa; letter-spacing: 0.5px; }
+    .tuner-scale {
+      font-size: 9px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+    }
     .tuner-needle {
-      width: 2px; height: 25px; background: #ff4d4d;
-      position: absolute; top: 22px; left: 60px; box-shadow: 0 0 8px #ff4d4d;
+      width: 2px;
+      height: 25px;
+      background: #ff4d4d;
+      position: absolute;
+      top: 22px;
+      left: 60px;
+      box-shadow: 0 0 8px #ff4d4d;
       transition: left 0.3s ease;
     }
-    .tuner-info { display: flex; justify-content: space-between; font-size: 9px; color: #ffcc00; font-weight: bold; }
-
-    /* রেডিওর নিচের কন্ট্রোল সেকশন */
-    .radio-bottom-section {
-      display: flex; flex-direction: column; gap: 6px;
-      background: #d8b08c; border: 2px solid #9c6b3f;
-      border-radius: 6px; padding: 8px;
+    .tuner-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #ffcc00;
+      font-weight: bold;
     }
 
-    .control-row { display: flex; justify-content: space-between; gap: 5px; }
+    /* রেডিওর নিচের কন্ট্রোল সেকশন (ব্ল্যাক কালার মেইনটেইন করা বাটন) */
+    .radio-bottom-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #d8b08c;
+      border: 2px solid #9c6b3f;
+      border-radius: 6px;
+      padding: 8px;
+    }
+
+    .control-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+    }
 
     .btn {
-      background: #e6ccb2; border: 1px solid #704214; border-radius: 4px;
-      padding: 6px 10px; cursor: pointer; font-size: 11px; font-weight: bold;
-      color: #111; box-shadow: 0 2px 3px rgba(0,0,0,0.2); flex: 1; transition: 0.2s;
+      background: #e6ccb2;
+      border: 1px solid #704214;
+      border-radius: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: bold;
+      color: #111; /* ব্ল্যাক টেক্সট/আইকন */
+      box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+      flex: 1;
+      transition: 0.2s;
     }
-    .btn:active { background: #cdb49d; transform: scale(0.95); }
+    .btn:active {
+      background: #cdb49d;
+      transform: scale(0.95);
+    }
 
-    .radio-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding: 0 2px; }
-    .radio-brand { font-size: 11px; font-weight: bold; color: #fff; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-    .radio-sub-brand { font-size: 9px; color: #f0e6d2; font-weight: normal; }
+    .radio-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      padding: 0 2px;
+    }
+    .radio-brand {
+      font-size: 11px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    .radio-sub-brand {
+      font-size: 9px;
+      color: #f0e6d2;
+      font-weight: normal;
+    }
 
+    /* একদম নিচের ট্যাগলাইন */
     .footer-tagline {
-      position: absolute; bottom: 2%; font-size: 13px; color: #d8b08c;
-      letter-spacing: 1px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-style: italic;
+      position: absolute;
+      bottom: 2%;
+      font-size: 13px;
+      color: #d8b08c;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      font-style: italic;
     }
   </style>
 </head>
 <body>
 
   <div class="bg-container">
+    <!-- ওপরের বড় টাইটেল -->
     <div class="main-title">পুরোনো<br>নগমে</div>
 
+    <!-- কাঠের রেডিও প্লেয়ার বক্স -->
     <div class="radio-box">
+      <!-- রেডিওর ওপরের অংশ -->
       <div class="radio-top-section">
-        <div class="radio-screen"><div id="player"></div></div>
+        <!-- বাঁ দিকের ইউটিউব প্লেয়ার স্ক্রিন -->
+        <div class="radio-screen">
+          <div id="player"></div>
+        </div>
         
+        <!-- ডান দিকের এফএম টিউনার স্কেল -->
         <div class="radio-tuner">
           <div class="tuner-scale">FM &nbsp; 88 &nbsp; 92 &nbsp; 96 &nbsp; 100 &nbsp; 104 &nbsp; 108</div>
           <div class="tuner-needle" id="tunerNeedle"></div>
@@ -101,6 +211,7 @@
         </div>
       </div>
 
+      <!-- রেডিওর নিচের অংশ: ফুল কন্ট্রোল প্যানেল -->
       <div class="radio-bottom-section">
         <div class="control-row">
           <button class="btn" onclick="prevTrack()">⏮ PREV</button>
@@ -122,22 +233,29 @@
       </div>
     </div>
 
+    <!-- একদম নিচের ট্যাগলাইন -->
     <div class="footer-tagline">সুর কখনও পুরোনো হয় না...</div>
   </div>
 
+  <!-- ইউটিউব আইফ্রেম এপিআই এবং অটো-সার্চ লজিক -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     var player;
-    // আপনার নতুন প্লেলিস্টের গানগুলোর ভিডিও আইডি এখানে রাখা হলো যাতে কোনো লোডিং এরর না হয়
-    var playlist = ['LXuqmhUlg6Q', 'dQw4w9WgXcQ', 'jNQXAC9IVRw']; 
-    var currentIndex = 0;
+    var searchQuery = 'নস্টালজিয়া কলকাতা সং'; // অটোমেটিক সার্চ কিওয়ার্ড
 
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('player', {
-        height: '160', width: '100%',
-        videoId: playlist[currentIndex],
-        playerVars: { 'autoplay': 1, 'controls': 0, 'modestbranding': 1, 'rel': 0 },
-        events: { 
+        height: '160',
+        width: '100%',
+        playerVars: {
+          'listType': 'search',
+          'list': searchQuery,
+          'autoplay': 1,
+          'controls': 0,
+          'modestbranding': 1,
+          'rel': 0
+        },
+        events: {
           'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
         }
@@ -149,19 +267,24 @@
       setInterval(updateRadioMeter, 1000);
     }
 
-    // গান শেষ হয়ে গেলে স্বয়ংক্রিয়ভাবে পরের গান প্লে হবে
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.ENDED) {
         nextTrack();
       }
     }
 
-    function playVideo() { if (player) player.playVideo(); }
-    function pauseVideo() { if (player) player.pauseVideo(); }
-    
+    function playVideo() {
+      if (player) player.playVideo();
+    }
+
+    function pauseVideo() {
+      if (player) player.pauseVideo();
+    }
+
     function changeVolume(amount) {
       if (player) {
-        var newVol = Math.min(100, Math.max(0, player.getVolume() + amount));
+        var currentVol = player.getVolume();
+        var newVol = Math.min(100, Math.max(0, currentVol + amount));
         player.setVolume(newVol);
       }
     }
@@ -174,37 +297,42 @@
     }
 
     function nextTrack() {
-      currentIndex = (currentIndex + 1) % playlist.length;
-      if (player && player.loadVideoById) {
-        player.loadVideoById(playlist[currentIndex]);
+      if (player && player.nextVideo) {
+        player.nextVideo();
       }
     }
 
     function prevTrack() {
-      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-      if (player && player.loadVideoById) {
-        player.loadVideoById(playlist[currentIndex]);
+      if (player && player.previousVideo) {
+        player.previousVideo();
       }
     }
 
+    // এফএম টিউনারের কাটা এবং টাইম আপডেট করার ফাংশন
     function updateRadioMeter() {
       if (player && player.getCurrentTime && player.getDuration) {
         var current = player.getCurrentTime();
         var duration = player.getDuration();
+        
         document.getElementById('currentTime').innerText = formatTime(current);
         document.getElementById('totalTime').innerText = formatTime(duration);
+
         if (duration > 0) {
           var percentage = current / duration;
-          document.getElementById('tunerNeedle').style.left = (20 + (percentage * 160)) + 'px';
+          var minLeft = 20; 
+          var maxLeft = 180; 
+          var newPos = minLeft + (percentage * (maxLeft - minLeft));
+          document.getElementById('tunerNeedle').style.left = newPos + 'px';
         }
       }
     }
 
-    function formatTime(s) {
-      var m = Math.floor(s / 60);
-      var sec = Math.floor(s % 60);
-      return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
+    function formatTime(seconds) {
+      var m = Math.floor(seconds / 60);
+      var s = Math.floor(seconds % 60);
+      return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
     }
   </script>
+
 </body>
 </html>
